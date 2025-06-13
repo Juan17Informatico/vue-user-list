@@ -1,5 +1,22 @@
-# Vue 3 + Vite
+# SPA Usuarios - Vue 3 + Vuetify
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 🛠️ Instalación
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+```bash
+npm install
+npm run dev
+```
+
+## 💡 Tecnologías
+
+- **Vue 3** (Composition API)
+- **Vuetify 3**
+- **Axios**
+
+## ⚙️ Funcionalidad
+
+- Listado de usuarios desde API pública.
+- Modal con detalles.
+- Filtro en tiempo real.
+- Responsive con Vuetify.
+- Carga, manejo de errores y animaciones.
