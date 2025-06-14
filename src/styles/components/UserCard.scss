@@ -1,0 +1,213 @@
+.user-card {
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        border-color: rgba(103, 126, 234, 0.3);
+    }
+
+    &:active {
+        transform: translateY(-2px);
+    }
+
+    &--loading {
+        cursor: default;
+
+        &:hover {
+            transform: none;
+            box-shadow: none !important;
+        }
+    }
+}
+
+.user-card-skeleton {
+    padding: 1rem;
+}
+
+.user-card-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.25rem 1.25rem 0;
+    gap: 1rem;
+
+    .avatar-container {
+        position: relative;
+        flex-shrink: 0;
+
+        .user-avatar {
+            transition: transform 0.3s ease;
+
+            .user-card:hover & {
+                transform: scale(1.05);
+            }
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid white;
+
+            &.online {
+                background-color: #4caf50;
+            }
+        }
+    }
+
+    .user-info {
+        flex: 1;
+        min-width: 0;
+
+        .user-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.25rem 0;
+            line-height: 1.3;
+            color: rgb(var(--v-theme-on-surface));
+
+            // Truncate long names
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .user-username {
+            font-size: 0.875rem;
+            color: rgb(var(--v-theme-primary));
+            margin: 0;
+            font-weight: 500;
+
+            // Truncate long usernames
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .favorite-btn {
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.user-content {
+    padding: 0 1.25rem 0.75rem;
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            color: rgb(var(--v-theme-primary));
+            opacity: 0.7;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            font-size: 0.875rem;
+            color: rgb(var(--v-theme-on-surface));
+            opacity: 0.8;
+            line-height: 1.4;
+
+            // Truncate long text
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+    }
+}
+
+.user-actions {
+    padding: 0.75rem 1.25rem 1.25rem;
+    gap: 0.5rem;
+
+    .details-btn {
+        border-radius: 8px;
+        text-transform: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: rgb(var(--v-theme-primary));
+            color: white;
+        }
+    }
+
+    .action-btn {
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: rgba(var(--v-theme-primary-rgb), 0.1);
+            transform: scale(1.1);
+        }
+    }
+}
+
+// Dark theme adjustments
+.v-theme--dark {
+    .user-card {
+        border-color: rgba(255, 255, 255, 0.1);
+
+        &:hover {
+            border-color: rgba(103, 126, 234, 0.5);
+        }
+    }
+
+    .status-badge {
+        border-color: rgb(var(--v-theme-surface)) !important;
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .user-card-header {
+        padding: 1rem 1rem 0;
+        gap: 0.75rem;
+
+        .avatar-container .user-avatar {
+            width: 48px !important;
+            height: 48px !important;
+        }
+
+        .user-info {
+            .user-name {
+                font-size: 1rem;
+            }
+
+            .user-username {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .user-content {
+        padding: 0 1rem 0.5rem;
+
+        .info-item {
+            margin-bottom: 0.4rem;
+
+            .info-text {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
