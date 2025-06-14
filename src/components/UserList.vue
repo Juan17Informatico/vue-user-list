@@ -8,14 +8,8 @@
         </div>
 
         <!-- Estado de error -->
-        <v-alert
-            v-else-if="error"
-            type="error"
-            variant="tonal"
-            class="error-alert"
-            closable
-            @click:close="error = null"
-        >
+        <v-alert v-else-if="error" type="error" variant="tonal" class="error-alert" closable
+            @click:close="error = null">
             <template v-slot:prepend>
                 <v-icon icon="mdi-alert-circle" />
             </template>
@@ -38,27 +32,12 @@
                 <p class="text-body-2 text-medium-emphasis">
                     Intenta con un término de búsqueda diferente
                 </p>
-                <v-btn variant="outlined" @click="clearSearch" class="mt-4">
-                    Limpiar búsqueda
-                </v-btn>
             </div>
 
             <!-- Grid de tarjetas de usuario -->
             <v-row v-else class="user-cards">
-                <v-col
-                    v-for="(user, index) in filteredUsers"
-                    :key="user.id"
-                    cols="12"
-                    sm="6"
-                    md="4"
-                    lg="3"
-                >
-                    <UserCard
-                        :user="user"
-                        :index="index"
-                        @show-details="openModal"
-                        class="user-card-item"
-                    />
+                <v-col v-for="(user, index) in filteredUsers" :key="user.id" cols="12" sm="6" md="4" lg="3">
+                    <UserCard :user="user" :index="index" @show-details="openModal" class="user-card-item" />
                 </v-col>
             </v-row>
         </div>
@@ -67,15 +46,8 @@
         <UserModal :user="selectedUser" v-model="showModal" @close="closeModal" />
 
         <!-- Botón flotante para scroll hacia arriba -->
-        <v-fab
-            v-show="showScrollTop"
-            icon="mdi-chevron-up"
-            location="bottom end"
-            size="small"
-            color="primary"
-            @click="scrollToTop"
-            class="scroll-fab"
-        />
+        <v-fab v-show="showScrollTop" icon="mdi-chevron-up" location="bottom end" size="small" color="primary"
+            @click="scrollToTop" class="scroll-fab" />
     </div>
 </template>
 
@@ -114,12 +86,6 @@ const openModal = (user) => {
 const closeModal = () => {
     showModal.value = false;
     selectedUser.value = null;
-};
-
-const clearSearch = () => {
-    // Esta función debería comunicar al componente padre para limpiar la búsqueda
-    // Por ahora, simplemente cerramos cualquier modal abierto
-    closeModal();
 };
 
 const retryLoad = async () => {
@@ -171,114 +137,4 @@ watch(loading, (newValue) => {
 });
 </script>
 
-<style lang="scss" scoped>
-.user-list-container {
-    position: relative;
-    min-height: 400px;
-}
-
-.loading-state {
-    .v-skeleton-loader {
-        border-radius: 12px;
-        overflow: hidden;
-    }
-}
-
-.error-alert {
-    border-radius: 12px;
-    margin-bottom: 2rem;
-
-    :deep(.v-alert__content) {
-        flex-grow: 1;
-    }
-}
-
-.users-grid {
-    position: relative;
-}
-
-.no-results {
-    text-align: center;
-    padding: 4rem 2rem;
-
-    .v-icon {
-        animation: pulse 2s infinite;
-    }
-}
-
-.user-cards {
-    .user-card-item {
-        animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        animation-fill-mode: both;
-
-        // Escalonar las animaciones
-        @for $i from 1 through 12 {
-            &:nth-child(#{$i}) {
-                animation-delay: #{$i * 0.1}s;
-            }
-        }
-    }
-}
-
-.scroll-fab {
-    position: fixed !important;
-    z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-        transform: translateY(-2px);
-    }
-}
-
-// Animaciones
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0%,
-    100% {
-        opacity: 0.4;
-    }
-    50% {
-        opacity: 0.8;
-    }
-}
-
-// Responsive
-@media (max-width: 768px) {
-    .no-results {
-        padding: 2rem 1rem;
-
-        .v-icon {
-            font-size: 48px !important;
-        }
-
-        h3 {
-            font-size: 1.25rem !important;
-        }
-    }
-
-    .user-cards {
-        margin: 0 -8px;
-
-        .v-col {
-            padding: 8px;
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    .scroll-fab {
-        bottom: 80px !important;
-        right: 16px !important;
-    }
-}
-</style>
+<style lang="scss" src="/src/styles/components/UserList.scss" scoped></style>
