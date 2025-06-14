@@ -9,7 +9,7 @@
                 </div>
                 <div class="header-content">
                     <h1 class="header-title">Juan Campuzano</h1>
-                    <p class="header-subtitle">Explora usuarios</p>
+                    <p class="header-subtitle">Explora y conecta con usuarios</p>
                 </div>
                 <v-spacer />
                 <!-- Decorative elements -->
@@ -57,10 +57,10 @@
             <v-container class="footer-content">
                 <div class="footer-brand">
                     <v-icon icon="mdi-account-group" size="24" class="me-2" />
-                    <span class="footer-title">UserHub</span>
+                    <span class="footer-title">JuanCM</span>
                 </div>
                 <div class="footer-info">
-                    <span class="footer-text">© 2025 UserHub</span>
+                    <span class="footer-text">© 2025 Juan Campuzano</span>
                     <v-divider vertical class="mx-3" />
                     <span class="footer-tech">Vue 3 & Vuetify</span>
                 </div>
@@ -79,4 +79,4 @@ const filteredCount = ref(0);
 const loading = ref(true);
 </script>
 
-<style scoped src="/src/styles/components/App.scss" ></style>
+<style scoped src="/src/styles/components/App.scss"></style>
