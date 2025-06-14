@@ -35,7 +35,7 @@ npm run dev
 
 ### 🧑‍💼 Listado de usuarios
 
-* Muestra avatar, nombre completo, correo y botón **“Ver más”**
+* Muestra avatar, nombre completo, correo y botón **“Ver detalles”**
 * Consumo de datos desde [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)
 
 ### 🔍 Filtro en tiempo real
