@@ -1,13 +1,7 @@
 <template>
-    <v-dialog
-        :model-value="modelValue"
-        @update:modelValue="$emit('update:modelValue', $event)"
-        max-width="600"
-        :transition="isMobile ? 'dialog-bottom-transition' : 'dialog-transition'"
-        :fullscreen="isMobile"
-        persistent
-        class="user-modal"
-    >
+    <v-dialog :model-value="modelValue" @update:modelValue="$emit('update:modelValue', $event)" max-width="600"
+        :transition="isMobile ? 'dialog-bottom-transition' : 'dialog-transition'" :fullscreen="isMobile" persistent
+        class="user-modal">
         <v-card v-if="user" class="user-modal-card">
             <!-- Header con fondo gradiente -->
             <div class="modal-header">
@@ -16,31 +10,19 @@
                     <!-- Avatar grande -->
                     <div class="avatar-section">
                         <v-avatar size="100" class="user-avatar-large">
-                            <v-img
-                                :src="`https://i.pravatar.cc/200?u=${user.id}`"
-                                :alt="`Avatar de ${user.name}`"
-                                cover
-                            >
-                                <template v-slot:placeholder>
+                            <v-img :src="`https://i.pravatar.cc/200?u=${user.id}`" :alt="`Avatar de ${user.name}`"
+                                cover>
+                                <template #placeholder>
                                     <v-skeleton-loader type="avatar" />
                                 </template>
                             </v-img>
                         </v-avatar>
-                        <div class="status-indicator online"></div>
                     </div>
 
                     <!-- Información principal -->
                     <div class="user-main-info">
                         <h2 class="user-name">{{ user.name }}</h2>
                         <p class="user-username">@{{ user.username }}</p>
-                        <v-chip
-                            size="small"
-                            color="success"
-                            variant="tonal"
-                            prepend-icon="mdi-check-circle"
-                        >
-                            Verificado
-                        </v-chip>
                     </div>
 
                     <!-- Botón cerrar -->
@@ -93,12 +75,8 @@
                                 <span>Sitio Web</span>
                             </div>
                             <div class="info-value">
-                                <a
-                                    :href="`https://${user.website}`"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="contact-link"
-                                >
+                                <a :href="`https://${user.website}`" target="_blank" rel="noopener noreferrer"
+                                    class="contact-link">
                                     {{ user.website }}
                                     <v-icon icon="mdi-open-in-new" size="14" class="ml-1" />
                                 </a>
@@ -125,13 +103,8 @@
                                     {{ user.address.city }}, {{ user.address.zipcode }}
                                 </p>
                             </div>
-                            <v-btn
-                                variant="outlined"
-                                size="small"
-                                prepend-icon="mdi-map"
-                                @click="openMap"
-                                class="map-btn"
-                            >
+                            <v-btn variant="outlined" size="small" prepend-icon="mdi-map" @click="openMap"
+                                class="map-btn">
                                 Ver en mapa
                             </v-btn>
                         </div>
@@ -159,34 +132,9 @@
                 </div>
             </v-card-text>
 
-            <!-- Footer con acciones -->
-            <v-card-actions class="modal-actions">
-                <div class="action-buttons">
-                    <!-- Botones de acción principal -->
-                    <v-btn
-                        variant="flat"
-                        color="primary"
-                        prepend-icon="mdi-email-send"
-                        @click="sendEmail"
-                        class="action-btn"
-                    >
-                        Enviar Email
-                    </v-btn>
-
-                    <v-btn
-                        variant="outlined"
-                        prepend-icon="mdi-phone"
-                        @click="makeCall"
-                        class="action-btn"
-                    >
-                        Llamar
-                    </v-btn>
-                </div>
-
-                <v-spacer />
-
-                <!-- Botón cerrar -->
-                <v-btn variant="text" @click="closeModal" class="close-text-btn"> Cerrar </v-btn>
+            <!-- Solo botón para cerrar -->
+            <v-card-actions class="modal-actions justify-end">
+                <v-btn variant="text" @click="closeModal" class="close-text-btn">Cerrar</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -205,18 +153,6 @@ const isMobile = computed(() => mobile.value);
 const closeModal = () => {
     emit("update:modelValue", false);
     emit("close");
-};
-
-const sendEmail = () => {
-    if (props.user?.email) {
-        window.open(`mailto:${props.user.email}`, "_self");
-    }
-};
-
-const makeCall = () => {
-    if (props.user?.phone) {
-        window.open(`tel:${props.user.phone}`, "_self");
-    }
 };
 
 const openMap = () => {
