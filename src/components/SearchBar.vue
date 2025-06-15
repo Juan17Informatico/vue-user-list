@@ -27,11 +27,11 @@
 
                 <div class="suggestions-container">
                     <v-chip v-for="suggestion in suggestions" :key="suggestion" class="suggestion-chip" size="small"
-                        variant="tonal" color="primary" prepend-icon="mdi-account-search"
+                        variant="tonal" color="primary" :prepend-icon="suggestion.icon"
                         @click="selectSuggestion(suggestion)" @mouseenter="hoveredSuggestion = suggestion"
                         @mouseleave="hoveredSuggestion = null"
                         :class="{ 'chip-hovered': hoveredSuggestion === suggestion }">
-                        {{ suggestion }}
+                        {{ suggestion.name }}
                     </v-chip>
                 </div>
 
